@@ -171,21 +171,24 @@
             <button id="insta">
                 AutoHumonize!
             </button>
+            <button id="mode" data-mode="standard">
+                Switch Mode
+            </button>
         </p>
         <div class="buttons">
             <div>
-                <img class="sound-click" id="myke" data-sound="myke" src="assets/myke.png">
+                <img class="sound-click" id="myke" data-sound="myke" src="assets/standard-myke.png">
             </div>
             <div>
-                <img class="sound-click" id="stephen" data-sound="stephen" src="assets/stephen.png">
+                <img class="sound-click" id="stephen" data-sound="stephen" src="assets/standard-stephen.png">
             </div>
             <div>
-                <img class="sound-click" id="ticci" data-sound="ticci" src="assets/ticci.png">
+                <img class="sound-click" id="ticci" data-sound="ticci" src="assets/standard-ticci.png">
             </div>
         </div>
 
         <div style="display: flex; align-items: center; justify-content: center;margin-top:10px">
-            <div><img class="sound-click bell" id="bell" data-sound="bell" src="assets/bell.png"></div>
+            <div><img class="sound-click bell" id="bell" data-sound="bell" src="assets/standard-bell.png"></div>
         </div>
     </main>
 
@@ -243,6 +246,17 @@
                     playSound(soundName)
                 })
             }))
+
+            document.getElementById('mode').addEventListener('click', (e) => {
+                let mode = 'tiny'
+                if (document.getElementById('mode').dataset.mode === 'tiny') mode = 'standard'
+
+                Array.from(document.getElementsByClassName('sound-click')).forEach((el => {
+                    el.src = `assets/${mode}-${el.id}.png`
+                }))
+
+                document.getElementById('mode').dataset.mode = mode
+            })
             
         })()
     </script>
